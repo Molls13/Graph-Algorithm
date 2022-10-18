@@ -32,8 +32,6 @@ const transform = (input) => {
   return graph
 }
 
-// console.log(buildGraph('a-b-c,f-d'))
-// console.log(transform('a-b-c,f-d'))
 export const connectedAndColored = (input) => {
   if(!input) return {}
   const visited = new Set()
@@ -79,6 +77,3 @@ const explore = (node, graph, visited, colorObj) => {
   }
   return true
 }
-
-// console.log(connectedAndColored('a-b-c'))
-// console.log(transform("a - b - c - d - e - f"))

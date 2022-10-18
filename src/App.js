@@ -32,38 +32,38 @@ function App() {
 
   return (
     <main className='container'>
-    <section>
+    <section className='inputSection'>
         <p className='text'>Please enter a graph:</p>
-        <form className='formContainer'>
-        <div className='searchForm__inputContainer'>
+        <form className='inputContainer'>
           <input className='input' type="text" placeholder='a-b-c' onChange={(e) => setInput(e.target.value)}
             value={input} />
           {
           input
-            ? <AiOutlineClose onClick={emptyInputField} className='searchForm__x' />
+            ? <AiOutlineClose onClick={emptyInputField} className='clearButton' />
             : ''
         }
-        </div>
         </form>
     </section>
-    <section>
+    <section className='resultContainer'>
       <div className='result'>
         {
           connected !== undefined ?
             <>
-              <p className='checkedInputText'> {checkedInput} {connected ? 'Connected' : 'Not connected'} {colorable ? 'and Red-Blue Colorable' : 'but not Red-Blue Colorable'} </p>
+              <p className='checkedInputText'> {checkedInput} {connected ? colorable ? 'Connected and Red-Blue Colorable' : 'Connected but not Red-Blue Colorable' : 'Not connected'} </p>
             </>
-            : <p className='checkedInputText'> Please submit a graph </p>
+            : <p className='checkedInputText'> No graph entered</p>
         }
       </div>
+      <div className='graphContainer'>
       <ForceGraph2D 
           graphData={buildGraph(sanitizedInput)} 
           nodeLabel="id" 
           backgroundColor="aliceblue" 
-          height={300} 
-          width={500} 
-          nodeColor={ d => d.index % 2 === 0 ? '#0000ff' : '#ff0000' }
+          height={350} 
+          width={350} 
+          nodeColor={ d => d.index % 2 === 0 ? '#0000ff' : '#ff0000'}
         />
+      </div>
     </section>
     </main>
   )
